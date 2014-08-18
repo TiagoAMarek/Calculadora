@@ -20,12 +20,12 @@ public class Escolhe {
 
 
 	private void preparaBotoes() {
-		// TODO Auto-generated method stub
+		// TODO Criação dos botões.
 		
 	}
 
 	private void preparaPainelPrincipal() {
-		// TODO Auto-generated method stub
+		// TODO Ajustar painel principal.
 		
 	}
 
