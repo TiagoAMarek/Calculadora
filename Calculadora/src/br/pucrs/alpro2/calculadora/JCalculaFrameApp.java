@@ -50,6 +50,8 @@ public class JCalculaFrameApp extends JFrame {
 		textField.setColumns(10);
 		textField.setText("0");
 		
+		final Operador op = new Operador();
+		
 		JButton button = new JButton("7");
 		button.setBounds(22, 45, 65, 32);
 		contentPane.add(button);
@@ -152,10 +154,36 @@ public class JCalculaFrameApp extends JFrame {
 		JButton button_14 = new JButton("=");
 		button_14.setBounds(176, 171, 65, 32);
 		contentPane.add(button_14);
+		button_14.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+            	Double result = 0.0;
+            	if(op.getOperacacao() == "+"){
+            		result = op.somador();
+            		textField.setText(String.valueOf(result));
+            	}
+            			
+            }
+		});
 		
 		JButton button_15 = new JButton("+");
 		button_15.setBounds(254, 171, 65, 32);
 		contentPane.add(button_15);
+		button_15.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+            	Double result = 0.0;
+            	if(op.getA() == null){
+            		op.setOperacacao("+");
+            		System.out.println("Definindo operacao como: " + op.getOperacacao());
+            		op.setA(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		textField.setText("0");
+            	}
+            	else{
+            		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		result = op.somador();
+            		textField.setText(String.valueOf(result));
+            	}
+            }
+        });
 		
 		JButton button_4 = new JButton("4");
 		button_4.setBounds(22, 83, 65, 32);

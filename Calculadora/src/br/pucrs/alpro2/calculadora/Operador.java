@@ -2,32 +2,42 @@ package br.pucrs.alpro2.calculadora;
 
 public class Operador {
 	
-	private double a;
-	private double b;
+	private String operacacao;
+	private Double a;
+	private Double b;
 	
-	public Operador(double a, double b) {
+	public Operador() {
 		super();
-		this.a = a;
-		this.b = b;
+		this.operacacao = "";
+		this.a = null;
+		this.b = null;
 	}
 
-	public double getA() {
+	public String getOperacacao() {
+		return operacacao;
+	}
+
+	public void setOperacacao(String operacacao) {
+		this.operacacao = operacacao;
+	}
+
+	public Double getA() {
 		return a;
 	}
 
-	public void setA(double a) {
+	public void setA(Double a) {
 		this.a = a;
 	}
 
-	public double getB() {
+	public Double getB() {
 		return b;
 	}
 
-	public void setB(double b) {
+	public void setB(Double b) {
 		this.b = b;
 	}
 	
-	public double somador(){
+	public Double somador(){
 		return a+b;
 	}
 	
