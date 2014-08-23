@@ -41,6 +41,22 @@ public class Operador {
 		return a+b;
 	}
 	
-
+	public Double subtrair(){
+		return a-b;
+	}
+	
+	public Double multiplicador(){
+		return a*b;
+	}
+	
+	public Double divisor(){
+		return a/b;
+	}
+	
+	public void Anulador(){
+		this.a = null;
+		this.b = null;
+	}
+	
 }
 

@@ -1,6 +1,5 @@
 package br.pucrs.alpro2.calculadora;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -92,8 +90,24 @@ public class JCalculaFrameApp extends JFrame {
         });
 		
 		JButton button_3 = new JButton("/");
-		button_3.setBounds(254, 45, 65, 32);
+		button_3.setBounds(176, 171, 65, 32);
 		contentPane.add(button_3);
+		button_3.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+            	Double result = 0.0;
+            	if(op.getA() == null){
+            		op.setOperacacao("/");
+            		op.setA(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		textField.setText("0");
+            	}
+            	else{
+            		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		result = op.divisor();
+            		textField.setText(String.valueOf(result));
+            		op.Anulador();
+            	}
+            }
+        });
 		
 		JButton button_8 = new JButton("1");
 		button_8.setBounds(22, 127, 65, 32);
@@ -137,9 +151,25 @@ public class JCalculaFrameApp extends JFrame {
 		JButton button_11 = new JButton("-");
 		button_11.setBounds(254, 127, 65, 32);
 		contentPane.add(button_11);
+		button_11.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+            	Double result = 0.0;
+            	if(op.getA() == null){
+            		op.setOperacacao("-");
+            		op.setA(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		textField.setText("0");
+            	}
+            	else{
+            		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		result = op.subtrair();
+            		textField.setText(String.valueOf(result));
+            		op.Anulador();
+            	}
+            }
+        });
 		
 		JButton button_12 = new JButton("0");
-		button_12.setBounds(22, 171, 142, 32);
+		button_12.setBounds(22, 171, 65, 32);
 		contentPane.add(button_12);
 		button_12.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -152,16 +182,32 @@ public class JCalculaFrameApp extends JFrame {
         });
 		
 		JButton button_14 = new JButton("=");
-		button_14.setBounds(176, 171, 65, 32);
+		button_14.setBounds(99, 171, 65, 32);
 		contentPane.add(button_14);
 		button_14.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
             	Double result = 0.0;
             	if(op.getOperacacao() == "+"){
+            		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
             		result = op.somador();
             		textField.setText(String.valueOf(result));
             	}
-            			
+            	else if(op.getOperacacao() == "-"){
+            		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		result = op.subtrair();
+            		textField.setText(String.valueOf(result));
+            	}		
+            	else if(op.getOperacacao() == "*"){
+            		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		result = op.multiplicador();
+            		textField.setText(String.valueOf(result));
+            	}
+            	else if(op.getOperacacao() == "/"){
+            		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		result = op.divisor();
+            		textField.setText(String.valueOf(result));
+            	}
+            	op.Anulador();
             }
 		});
 		
@@ -173,7 +219,6 @@ public class JCalculaFrameApp extends JFrame {
             	Double result = 0.0;
             	if(op.getA() == null){
             		op.setOperacacao("+");
-            		System.out.println("Definindo operacao como: " + op.getOperacacao());
             		op.setA(Double.parseDouble(textField.getText().replaceAll(",", ".")));
             		textField.setText("0");
             	}
@@ -181,6 +226,7 @@ public class JCalculaFrameApp extends JFrame {
             		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
             		result = op.somador();
             		textField.setText(String.valueOf(result));
+            		op.Anulador();
             	}
             }
         });
@@ -227,6 +273,32 @@ public class JCalculaFrameApp extends JFrame {
 		JButton btnX = new JButton("x");
 		btnX.setBounds(254, 83, 65, 32);
 		contentPane.add(btnX);
+		btnX.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+            	Double result = 0.0;
+            	if(op.getA() == null){
+            		op.setOperacacao("x");
+            		op.setA(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		textField.setText("0");
+            	}
+            	else{
+            		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
+            		result = op.multiplicador();
+            		textField.setText(String.valueOf(result));
+            		op.Anulador();
+            	}
+            }
+        });
+		
+		JButton btnCe = new JButton("CE");
+		btnCe.setBounds(253, 45, 65, 32);
+		contentPane.add(btnCe);
+		btnCe.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+            	textField.setText("0");
+            	op.Anulador();
+            }
+        });
 		
 	}
 }
