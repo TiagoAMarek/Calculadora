@@ -36,13 +36,14 @@ public class JCalculaFrameApp extends JFrame {
 	 */
 	public JCalculaFrameApp() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 365, 265);
+		setBounds(100, 100, 365, 291);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		textField = new JTextField();
+		textField.setHorizontalAlignment(JTextField.RIGHT);
 		textField.setBounds(12, 12, 322, 19);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -182,7 +183,7 @@ public class JCalculaFrameApp extends JFrame {
         });
 		
 		JButton button_14 = new JButton("=");
-		button_14.setBounds(99, 171, 65, 32);
+		button_14.setBounds(22, 214, 297, 32);
 		contentPane.add(button_14);
 		button_14.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -197,7 +198,7 @@ public class JCalculaFrameApp extends JFrame {
             		result = op.subtrair();
             		textField.setText(String.valueOf(result));
             	}		
-            	else if(op.getOperacacao() == "*"){
+            	else if(op.getOperacacao() == "x"){
             		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
             		result = op.multiplicador();
             		textField.setText(String.valueOf(result));
@@ -299,6 +300,21 @@ public class JCalculaFrameApp extends JFrame {
             	op.Anulador();
             }
         });
+		
+		JButton button_7 = new JButton(",");
+		button_7.setBounds(99, 171, 65, 32);
+		contentPane.add(button_7);
+		button_7.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+            	String valor = "";
+        		valor = textField.getText();
+            	if(valor.indexOf(",") == -1){
+            		textField.setText(valor + ",");
+            	}
+            }
+        });
+		
+
 		
 	}
 }
