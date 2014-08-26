@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class JCalculaFrameApp extends JFrame {
 
@@ -38,6 +39,7 @@ public class JCalculaFrameApp extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 365, 291);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLUE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -191,23 +193,20 @@ public class JCalculaFrameApp extends JFrame {
             	if(op.getOperacacao() == "+"){
             		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
             		result = op.somador();
-            		textField.setText(String.valueOf(result));
             	}
             	else if(op.getOperacacao() == "-"){
             		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
             		result = op.subtrair();
-            		textField.setText(String.valueOf(result));
             	}		
             	else if(op.getOperacacao() == "x"){
             		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
             		result = op.multiplicador();
-            		textField.setText(String.valueOf(result));
             	}
             	else if(op.getOperacacao() == "/"){
             		op.setB(Double.parseDouble(textField.getText().replaceAll(",", ".")));
             		result = op.divisor();
-            		textField.setText(String.valueOf(result));
             	}
+        		textField.setText(String.valueOf(result));
             	op.Anulador();
             }
 		});
@@ -233,6 +232,7 @@ public class JCalculaFrameApp extends JFrame {
         });
 		
 		JButton button_4 = new JButton("4");
+		button_4.setForeground(Color.BLACK);
 		button_4.setBounds(22, 83, 65, 32);
 		contentPane.add(button_4);
 		button_4.addActionListener(new ActionListener(){
@@ -313,8 +313,5 @@ public class JCalculaFrameApp extends JFrame {
             	}
             }
         });
-		
-
-		
 	}
 }
